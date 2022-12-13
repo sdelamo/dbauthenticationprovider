@@ -1,0 +1,2 @@
+[engine:junit-jupiter]/[class:example.micronaut.LoginTest]/[method:loginIsPossible()]
+[engine:junit-jupiter]/[class:example.micronaut.MicronautDatabaseAuthenticationTest]/[method:testItWorks()]
