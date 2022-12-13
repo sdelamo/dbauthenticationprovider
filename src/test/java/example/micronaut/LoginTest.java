@@ -17,14 +17,12 @@ import io.micronaut.http.client.annotation.Client;
 import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import io.micronaut.http.uri.UriBuilder;
 import io.micronaut.security.token.jwt.cookie.AccessTokenCookieConfiguration;
-import io.micronaut.security.token.jwt.cookie.JwtCookieConfigurationProperties;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.net.URI;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -81,7 +79,7 @@ class LoginTest {
 
         Executable e = () -> client.retrieve(HttpRequest.GET(uri), Message.class);
         HttpClientResponseException thrown = assertThrows(HttpClientResponseException.class, e);
-        assertEquals(thrown.getStatus(), thrown.getStatus());
+        assertEquals(HttpStatus.UNAUTHORIZED, thrown.getStatus());
 
         Message message = client.retrieve(HttpRequest.GET(uri).bearerAuth(jwt), Message.class);
         assertEquals("Hello World", message.getMessage());
